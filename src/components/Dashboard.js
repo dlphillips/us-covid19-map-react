@@ -40,16 +40,16 @@ const Dashboard = () => {
   dotenv.config()
   const mqKey = process.env.REACT_APP_MAPQUEST_KEY
 
-  const [lng, setLng] = useState(175.46787915)
-  const [lat, setLat] = useState(-37.8811556833)
-  const [zoom, setZoom] = useState(10)
+  const [lng, setLng] = useState(-96.967784)
+  const [lat, setLat] = useState(38.119880)
+  const [zoom, setZoom] = useState(5)
   const [resStreet, setResStreet] = useState('')
   const [resCity, setResCity] = useState('')
   const [resState, setResState] = useState('')
   const [resZip, setResZip] = useState('')
   const [inputError, setInputError] = useState('')
   const [drawerState, setDrawerState] = React.useState(false)
-  const [baseMap, setBaseMap] = useState('OpenStreetMap')
+  const [baseMap, setBaseMap] = useState('CartoDB DarkMatter')
   const [heatMap, setHeatMap] = React.useState(false)
 
   const classes = useStyles()
