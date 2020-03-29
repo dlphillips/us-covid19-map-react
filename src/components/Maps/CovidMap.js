@@ -11,25 +11,26 @@ const minRadius = 2
 
 const onEachFeaturePoint = (feature, layer) => {
   if (feature.properties && feature.properties.Combined_k) {
-    const popup = `<h3> ${feature.properties.Combined_k}</h3><table>
+    const popup = `<h3> ${feature.properties.Combined_k}</h3>
+    <table>
       <tbody>
-      <tr>
-      <td>Cases </td>
-      <td>${feature.properties.Confirmed}</td>
-      </tr>
-      <tr>
-      <td>Deaths</td>
-      <td>${feature.properties.Deaths}</td>
-      </tr>
-      <tr>
-      <td>Recovered </td>
-      <td>${feature.properties.Recovered}</td>
-      </tr>
-      <tr>
-      <td><h3><a href='https://www.google.com/search?q=${feature.properties.Combined_k} covid-19' target='_blank'> Latest News </a></h3></td>
-      </tr>
+        <tr>
+          <td>Cases </td>
+          <td>${feature.properties.Confirmed}</td>
+        </tr>
+        <tr>
+          <td>Deaths</td>
+          <td>${feature.properties.Deaths}</td>
+        </tr>
+        <tr>
+          <td>Recovered </td>
+          <td>${feature.properties.Recovered}</td>
+        </tr>
+          <tr>
+          <td><h3><a href='https://www.google.com/search?q=${feature.properties.Combined_k} covid-19' target='_blank'> Latest News </a></h3></td>
+        </tr>
       </tbody>
-      </table>`
+    </table>`
 
     layer.bindPopup(popup, { closeButton: false, offset: L.point(0, -20) })
   }
