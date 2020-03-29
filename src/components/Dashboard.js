@@ -4,12 +4,11 @@ import fetch from 'node-fetch'
 import Grid from '@material-ui/core/Grid'
 import AppBar from './AppBar.js'
 import { makeStyles } from '@material-ui/core/styles'
-import LocationMap from './Maps/Location.js'
+import CovidMap from './Maps/CovidMap.js'
 import HeatMap from './Maps/HeatMap.js'
 import BaseMapSelectDrawer from './BaseMapSelectDrawer.js'
 import toast from 'toasted-notes'
 import 'toasted-notes/src/styles.css'
-import changeCase from 'change-case'
 
 import dotenv from 'dotenv'
 
@@ -42,7 +41,7 @@ const Dashboard = () => {
 
   const [lng, setLng] = useState(-96.967784)
   const [lat, setLat] = useState(38.119880)
-  const [zoom, setZoom] = useState(5)
+  const [zoom, setZoom] = useState(4)
   const [resStreet, setResStreet] = useState('')
   const [resCity, setResCity] = useState('')
   const [resState, setResState] = useState('')
@@ -55,32 +54,19 @@ const Dashboard = () => {
   const classes = useStyles()
 
   const geocodeSearch = searchValue => {
-    if (searchValue.indexOf('/') > -1) {
-      const searchSplit = searchValue.split('/')
-      const company = searchSplit[0].split().join()
-      const companyPascal = changeCase.pascalCase(company)
-      const address = searchSplit[1].split(' ').join('+')
-      fetch(
-        `https://www.mapquestapi.com/geocoding/v1/address?key=${mqKey}&inFormat=kvp&outFormat=json&location=${address}&thumbMaps=false`
-      )
-        .then(res => res.json())
-        .then(json => {
-          setLng(json.results[0].locations[0].displayLatLng.lng)
-          setLat(json.results[0].locations[0].displayLatLng.lat)
-          setResStreet(json.results[0].locations[0].street)
-          setResCity(json.results[0].locations[0].adminArea5)
-          setResState(json.results[0].locations[0].adminArea3)
-          setResZip(json.results[0].locations[0].postalCode)
-          console.log(companyPascal)
-          console.log(
-            changeCase.pascalCase(json.results[0].locations[0].adminArea5) +
-              '_' +
-              json.results[0].locations[0].adminArea3
-          )
-        })
-    } else {
-      setInputError('No company submitted. Please try again')
-    }
+    fetch(
+      `https://www.mapquestapi.com/geocoding/v1/address?key=${mqKey}&inFormat=kvp&outFormat=json&location=${searchValue}&thumbMaps=false`
+    )
+      .then(res => res.json())
+      .then(json => {
+        console.log('json: ', json.results[0].locations[0].displayLatLng);
+        setLng(json.results[0].locations[0].displayLatLng.lng)
+        setLat(json.results[0].locations[0].displayLatLng.lat)
+        setResStreet(json.results[0].locations[0].street)
+        setResCity(json.results[0].locations[0].adminArea5)
+        setResState(json.results[0].locations[0].adminArea3)
+        setResZip(json.results[0].locations[0].postalCode)
+      })
   }
 
   const getBaseLayer = baseMap => {
@@ -141,7 +127,7 @@ const Dashboard = () => {
           </Grid>
           <Grid item xs={12} sm={12}>
             {!heatMap && (
-              <LocationMap
+              <CovidMap
                 lat={lat}
                 lng={lng}
                 street={resStreet}
