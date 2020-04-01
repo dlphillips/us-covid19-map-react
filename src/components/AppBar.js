@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import Switch from '@material-ui/core/Switch'
 import FormGroup from '@material-ui/core/FormGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
+// import {Select, InputLabel, MenuItem } from '@material-ui/core/'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -54,6 +55,11 @@ export default function SearchAppBar (props) {
               label='Heat Map'
             />
           </FormGroup>
+          {/* <InputLabel id="label">Select Date</InputLabel>
+          <Select labelId="label" id="select" value="20">
+            <MenuItem value="10">Ten</MenuItem>
+            <MenuItem value="20">Twenty</MenuItem>
+          </Select> */}
           <Typography className={classes.title} variant='h6' noWrap>
             US COVID-19 Cases by County
           </Typography>
