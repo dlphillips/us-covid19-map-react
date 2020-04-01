@@ -37,7 +37,7 @@
 }
 
 .leaflet-container {
-  height: 530px;
+  height: 85vh;
   width: 100%;
   background-color: #282c34;
 }

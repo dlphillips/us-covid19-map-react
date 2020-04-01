@@ -27,7 +27,11 @@ const onEachFeaturePoint = (feature, layer) => {
           <td>${feature.properties.Recovered}</td>
         </tr>
           <tr>
-          <td><h3><a href='https://www.google.com/search?q=${feature.properties.Combined_k} covid-19' target='_blank'> Latest News </a></h3></td>
+          <td>
+            <h3>
+              <a href='https://www.google.com/search?q=${feature.properties.Combined_k} covid-19' target='_blank'> Latest News </a>
+            </h3>
+          </td>
         </tr>
       </tbody>
     </table>`
