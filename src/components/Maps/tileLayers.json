@@ -1,10 +1,22 @@
 {
-  "layers":[ 
+  "layers":[
     {
-      "name": "Thunderforest - OpenCycleMap",
-      "attribution": "&copy; <a href='http://www.thunderforest.com/'>Thunderforest</a>, &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
-      "url": "https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png",
-      "apiKey": "REACT_APP_THUNDERFOREST_KEY"
+      "name": "ESRI World Street Map",
+      "attribution": "&copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012",
+      "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+      "apiKey": ""
+    },
+    {
+      "name": "Stadia OSM Bright",
+      "attribution": "&copy; <a href='https://stadiamaps.com/'>Stadia Maps</a>, &copy; <a href='https://openmaptiles.org/'>OpenMapTiles</a>, &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
+      "url": "https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png",
+      "apiKey": ""
+    },
+    {
+      "name": "Stadia Alidade Smooth Dark",
+      "attribution": "&copy; <a href='https://stadiamaps.com/'>Stadia Maps</a>, &copy; <a href='https://openmaptiles.org/'>OpenMapTiles</a>, &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
+      "url": "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
+      "apiKey": ""
     },
     {
       "name": "Thunderforest - Transport",
@@ -28,18 +40,6 @@
       "name": "Thunderforest - Transport Dark",
       "attribution": "&copy; <a href='http://www.thunderforest.com/'>Thunderforest</a>, &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
       "url": "https://tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png",
-      "apiKey": "REACT_APP_THUNDERFOREST_KEY"
-    },
-    {
-      "name": "Thunderforest - Spinal Map",
-      "attribution": "&copy; <a href='http://www.thunderforest.com/'>Thunderforest</a>, &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
-      "url": "https://tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png",
-      "apiKey": "REACT_APP_THUNDERFOREST_KEY"
-    },
-    {
-      "name": "Thunderforest - Pioneer",
-      "attribution": "&copy; <a href='http://www.thunderforest.com/'>Thunderforest</a>, &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
-      "url": "https://tile.thunderforest.com/pioneer/{z}/{x}/{y}.png",
       "apiKey": "REACT_APP_THUNDERFOREST_KEY"
     },
     {
