@@ -52,7 +52,7 @@ const pointToLayer = (feature, ll) => {
 }
 
 const calcRadius = val =>
-  1.0083 * Math.pow(val / minValue, .35) * minRadius
+  1.0083 * Math.pow(val / minValue, .30) * minRadius
 
 const CovidMap = props => {
   const { baseMap, onMapMove, lat, lng } = props
