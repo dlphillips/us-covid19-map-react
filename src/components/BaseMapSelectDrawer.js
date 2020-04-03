@@ -65,7 +65,7 @@ export default function TemporaryDrawer (props) {
   )
   return (
     <div>
-      <Drawer open={props.drawerState} onClose={props.toggleDrawer()}>
+      <Drawer open={props.drawerState} onClose={props.toggleDrawer()} anchor={'right'}>
         {sideList('left')}
       </Drawer>
     </div>

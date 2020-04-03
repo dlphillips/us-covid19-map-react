@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import MenuIcon from '@material-ui/icons/Menu'
-import { Switch, IconButton, Toolbar, FormControlLabel } from '@material-ui/core/'
+import { Switch, IconButton, Toolbar, FormControlLabel, Typography, Grid } from '@material-ui/core/'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,15 +25,6 @@ export default function SearchAppBar (props) {
   return (
     <div className={classes.root}>
       <Toolbar className={classes.header}>
-        <IconButton
-          edge='start'
-          className={classes.menuButton}
-          color='inherit'
-          aria-label='open drawer'
-          onClick={props.toggleDrawer()}
-        >
-        <MenuIcon />
-        </IconButton>
         <FormControlLabel
           control={
             <Switch
@@ -43,10 +34,24 @@ export default function SearchAppBar (props) {
             />
           }
           label='Heat Map'
+          labelPlacement="end"
         />
-        <h2>
-          US COVID-19 Cases by County
-        </h2>
+        <Grid container justify = "center">
+          <Typography variant='h5'>
+            US COVID-19 Cases by County
+          </Typography>
+        </Grid>
+        <Typography align='right' style={{ flex: 1 }}>
+          <IconButton
+            edge='start'
+            className={classes.menuButton}
+            color='inherit'
+            aria-label='open drawer'
+            onClick={props.toggleDrawer()}
+          >
+          <MenuIcon />
+          </IconButton>
+        </Typography>
       </Toolbar>
     </div>
   )
