@@ -7,7 +7,7 @@ import CovidMap from './Maps/CovidMap.js'
 import HeatMap from './Maps/HeatMap.js'
 import BaseMapSelectDrawer from './BaseMapSelectDrawer.js'
 import * as tileLayers from './Maps/tileLayers.json'
-import data from '../data/04-13-2020.json'
+import data from '../data/04-14-2020.json'
 
 const useStyles = makeStyles(theme => ({
   '@global': {
