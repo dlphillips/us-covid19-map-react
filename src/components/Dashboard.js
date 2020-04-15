@@ -1,18 +1,13 @@
 import React, { useState } from 'react'
 import '../App.css'
-import fetch from 'node-fetch'
 import Grid from '@material-ui/core/Grid'
 import AppBar from './AppBar.js'
 import { makeStyles } from '@material-ui/core/styles'
 import CovidMap from './Maps/CovidMap.js'
 import HeatMap from './Maps/HeatMap.js'
 import BaseMapSelectDrawer from './BaseMapSelectDrawer.js'
-import toast from 'toasted-notes'
-import 'toasted-notes/src/styles.css'
-
-import dotenv from 'dotenv'
-
 import * as tileLayers from './Maps/tileLayers.json'
+import data from '../data/04-13-2020.json'
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -36,38 +31,14 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Dashboard = () => {
-  dotenv.config()
-  const mqKey = process.env.REACT_APP_MAPQUEST_KEY
-
   const [lng, setLng] = useState(-96.967784)
   const [lat, setLat] = useState(38.119880)
   const [zoom, setZoom] = useState(4)
-  const [resStreet, setResStreet] = useState('')
-  const [resCity, setResCity] = useState('')
-  const [resState, setResState] = useState('')
-  const [resZip, setResZip] = useState('')
-  const [inputError, setInputError] = useState('')
   const [drawerState, setDrawerState] = React.useState(false)
   const [baseMap, setBaseMap] = useState('CartoDB DarkMatter')
-  const [heatMap, setHeatMap] = React.useState(false)
+  const [heatMap, setHeatMap] = useState(false)
 
   const classes = useStyles()
-
-  const geocodeSearch = searchValue => {
-    fetch(
-      `https://www.mapquestapi.com/geocoding/v1/address?key=${mqKey}&inFormat=kvp&outFormat=json&location=${searchValue}&thumbMaps=false`
-    )
-      .then(res => res.json())
-      .then(json => {
-        console.log('json: ', json.results[0].locations[0].displayLatLng);
-        setLng(json.results[0].locations[0].displayLatLng.lng)
-        setLat(json.results[0].locations[0].displayLatLng.lat)
-        setResStreet(json.results[0].locations[0].street)
-        setResCity(json.results[0].locations[0].adminArea5)
-        setResState(json.results[0].locations[0].adminArea3)
-        setResZip(json.results[0].locations[0].postalCode)
-      })
-  }
 
   const getBaseLayer = baseMap => {
     setBaseMap(baseMap)
@@ -100,16 +71,10 @@ const Dashboard = () => {
     }
     setDrawerState(!drawerState)
   }
-
-  const reportError = () => {
-    toast.notify(inputError)
-    setInputError('')
-  }
-
+    
   return (
     <div className='App'>
       <div className={classes.root}>
-        {inputError && reportError()}
         <BaseMapSelectDrawer
           toggleDrawer={toggleDrawer}
           drawerState={drawerState}
@@ -118,11 +83,11 @@ const Dashboard = () => {
         <Grid container spacing={1}>
           <Grid item xs={12} sm={12}>
             <AppBar
-              handleSearch={geocodeSearch}
               drawerState={drawerState}
               toggleDrawer={toggleDrawer}
               handleToggleHeatMap={toggleHeatMap}
               heatMap={heatMap}
+              updated={data.features[0].properties.Last_Update}
             />
           </Grid>
           <Grid item xs={12} sm={12}>
@@ -130,26 +95,20 @@ const Dashboard = () => {
               <CovidMap
                 lat={lat}
                 lng={lng}
-                street={resStreet}
-                city={resCity}
-                state={resState}
-                zip={resZip}
                 zoom={zoom}
                 baseMap={getBaseMapObject(baseMap)}
                 onMapMove={handleMapMove}
+                geoData={data}
               />
             )}
             {heatMap && (
               <HeatMap
                 lat={lat}
                 lng={lng}
-                street={resStreet}
-                city={resCity}
-                state={resState}
-                zip={resZip}
                 zoom={zoom}
                 baseMap={getBaseMapObject(baseMap)}
                 onMapMove={handleMapMove}
+                geoData={data}
               />
             )}
           </Grid>

@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import { makeStyles } from '@material-ui/core/styles'
 import MenuIcon from '@material-ui/icons/Menu'
 import { Switch, IconButton, Toolbar, FormControlLabel, Typography, Grid } from '@material-ui/core/'
@@ -20,6 +21,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function SearchAppBar (props) {
 
+  const updatedAt = moment(props.updated).format('ll')
+
   const classes = useStyles()
 
   return (
@@ -38,7 +41,7 @@ export default function SearchAppBar (props) {
         />
         <Grid container justify = "center">
           <Typography variant='h5'>
-            US COVID-19 Cases by County
+            {`COVID-19 Cases - Updated ${updatedAt}`}
           </Typography>
         </Grid>
         <Typography align='right' style={{ flex: 1 }}>

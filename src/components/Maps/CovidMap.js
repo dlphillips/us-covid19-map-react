@@ -2,16 +2,15 @@ import React from 'react'
 import { Map, TileLayer, GeoJSON } from 'react-leaflet'
 import L from 'leaflet'
 import dotenv from 'dotenv'
-import data from '../../data/data.json'
 
 dotenv.config()
 const tfKey = process.env.REACT_APP_THUNDERFOREST_KEY
 const minValue = 1
-const minRadius = 2
+const minRadius = 1
 
 const onEachFeaturePoint = (feature, layer) => {
-  if (feature.properties && feature.properties.Combined_k) {
-    const popup = `<h3> ${feature.properties.Combined_k}</h3>
+  if (feature.properties && feature.properties.Combined_Key) {
+    const popup = `<h3> ${feature.properties.Combined_Key}</h3>
     <table>
       <tbody>
         <tr>
@@ -29,7 +28,7 @@ const onEachFeaturePoint = (feature, layer) => {
           <tr>
           <td>
             <h3>
-              <a href='https://www.google.com/search?q=${feature.properties.Combined_k} covid-19' target='_blank'> Latest News </a>
+              <a href='https://www.google.com/search?q=${feature.properties.Combined_Key} covid-19' target='_blank'> Latest News </a>
             </h3>
           </td>
         </tr>
@@ -55,16 +54,16 @@ const calcRadius = val =>
   1.0083 * Math.pow(val / minValue, .30) * minRadius
 
 const CovidMap = props => {
-  const { baseMap, onMapMove, lat, lng } = props
+  const { baseMap, onMapMove, lat, lng, zoom, geoData } = props
   const position = [lat, lng]
 
   return (
-    <Map center={position} zoom={Number(props.zoom)} onMoveend={onMapMove}>
+    <Map center={position} zoom={Number(zoom)} onMoveend={onMapMove}>
       <TileLayer
         attribution={baseMap.attribution}
         url={baseMap.apiKey ? `${baseMap.url}?apikey=${tfKey}` : baseMap.url}
       />
-      <GeoJSON data={data} onEachFeature={onEachFeaturePoint} pointToLayer={pointToLayer} />
+      <GeoJSON data={geoData} onEachFeature={onEachFeaturePoint} pointToLayer={pointToLayer} />
     </Map>
   )
 }
